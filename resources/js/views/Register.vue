@@ -11,80 +11,76 @@ import Footer from "../components/Footer.vue";
             class="login-form d-flex justify-content-center align-items-center"
             style="height: 80vh; background-color: "
         >
-            <form
-                class="col-lg-6 col-12 col-md-10 col-sm-8 p-4 rounded"
+        <form
+                class="col-lg-6 col-12 col-md-10 col-sm-8 p-5 rounded"
                 style="background-color: #e4d9d9"
                 @submit.prevent="registerUser()"
                 method="POST"
             >
                 <h3 class="text-center">Registracija</h3>
-                <div class="mb">
-                    <label for="exampleInputPassword1" class="form-label"
-                        >Ime</label
-                    >
+                <div class="form-floating mb-3">
                     <input
                         type="text"
                         class="form-control"
-                        id="exampleInputPassword1"
+                        id="floatingInput"
+                        placeholder="name@example.com"
                         v-model="user.name"
                     />
+                    <label for="floatingInput">Ime</label>
                     <p v-if="errors.name" class="text-danger">
                         {{ errors.name[0] }}
                     </p>
                 </div>
-                <div class="mb">
-                    <label for="exampleInputPassword1" class="form-label"
-                        >Prezime</label
-                    >
+                <div class="form-floating mb-3">
                     <input
                         type="text"
                         class="form-control"
-                        id="exampleInputPassword1"
+                        id="floatingInput"
+                        placeholder="name@example.com"
                         v-model="user.surname"
                     />
+                    <label for="floatingInput">Prezime</label>
                     <p v-if="errors.surname" class="text-danger">
                         {{ errors.surname[0] }}
                     </p>
                 </div>
-                <div class="mb">
-                    <label for="exampleInputEmail1" class="form-label"
-                        >Email</label
-                    >
+
+                <div class="form-floating mb-3">
                     <input
                         type="email"
                         class="form-control"
-                        id="exampleInputEmail1"
-                        aria-describedby="emailHelp"
+                        id="floatingInput"
+                        placeholder="name@example.com"
                         v-model="user.email"
                     />
+                    <label for="floatingInput">Email adresa</label>
                     <p v-if="errors.email" class="text-danger">
                         {{ errors.email[0] }}
                     </p>
                 </div>
-                <div class="mb">
-                    <label for="exampleInputPassword1" class="form-label"
-                        >Lozinka</label
-                    >
+
+                <div class="form-floating mb-3">
                     <input
                         type="password"
                         class="form-control"
-                        id="exampleInputPassword1"
+                        id="floatingPassword"
+                        placeholder="Password"
                         v-model="user.password"
                     />
+                    <label for="floatingPassword">Lozinka</label>
                     <p v-if="errors.password" class="text-danger">
                         {{ errors.password[0] }}
                     </p>
                 </div>
-                <div class="mb-2">
-                    <label for="exampleInputPassword1" class="form-label"
-                        >Ponovi lozinku</label
-                    >
+                <div class="form-floating mb-3">
                     <input
                         type="password"
                         class="form-control"
-                        id="exampleInputPassword1"
+                        id="floatingPassword"
+                        placeholder="Password"
                         v-model="user.repeat_password"
                     />
+                    <label for="floatingPassword">Ponovi lozinku</label>
                     <p v-if="errors.repeat_password" class="text-danger">
                         {{ errors.repeat_password[0] }}
                     </p>
@@ -102,14 +98,6 @@ import Footer from "../components/Footer.vue";
                     style="background-color: #ff26c2"
                 >
                     {{ message }}
-                </div>
-                <div
-                    v-if="existMailUser"
-                    class="alert alert-light text-light mt-3 text-center"
-                    role="alert"
-                    style="background-color: #ff26c2"
-                >
-                    Postoji korisnik sa tim emailom!
                 </div>
             </form>
         </div>

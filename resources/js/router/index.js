@@ -7,14 +7,15 @@ import Kid from '../views/Kid.vue'
 import Woman from '../views/Woman.vue'
 import Cart from '../views/Cart.vue'
 import SearchResult from '../views/SearchResult.vue'
+import Home from '../views/Home.vue'
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
 
         {
-            path: '/',
-            name: 'man',
+            path: '/mens',
+            name: 'mens',
             component: Man
         },
 
@@ -54,6 +55,11 @@ const router = createRouter({
             path: '/searchResult',
             name: 'searchResult',
             component:SearchResult
+        },
+        {
+            path: '/',
+            name: 'home',
+            component:Home
         }
 
     ]

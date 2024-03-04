@@ -26,7 +26,10 @@
           </div>
           <ul class="navbar-nav ms-auto ">
             <li class="nav-item">
-              <router-link class="nav-link mx-2 text-uppercase active " aria-current="page" to="/">Muškarci</router-link>
+              <router-link class="nav-link mx-2 text-uppercase active " aria-current="page" to="/">Početna</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link mx-2 text-uppercase active " aria-current="page" to="/mens">Muškarci</router-link>
             </li>
             <li class="nav-item">
             <router-link class="nav-link mx-2 text-uppercase active " aria-current="page" to="/womens">Žene</router-link>

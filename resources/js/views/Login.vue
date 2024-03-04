@@ -17,31 +17,28 @@ import Footer from "../components/Footer.vue";
                 method="POST"
             >
                 <h3 class="text-center">Prijava</h3>
-                <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label"
-                        >Email</label
-                    >
+                <div class="form-floating mb-3">
                     <input
                         type="email"
                         class="form-control"
-                        id="exampleInputEmail1"
-                        aria-describedby="emailHelp"
+                        id="floatingInput"
+                        placeholder="name@example.com"
                         v-model="user.email"
                     />
+                    <label for="floatingInput">Email adresa</label>
                     <p v-if="errors.email" class="text-danger">
                         {{ errors.email[0] }}
                     </p>
                 </div>
-                <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label"
-                        >Lozinka</label
-                    >
+                <div class="form-floating mb-3">
                     <input
                         type="password"
                         class="form-control"
-                        id="exampleInputPassword1"
+                        id="floatingPassword"
+                        placeholder="Password"
                         v-model="user.password"
                     />
+                    <label for="floatingPassword">Lozinka</label>
                     <p v-if="errors.password" class="text-danger">
                         {{ errors.password[0] }}
                     </p>
