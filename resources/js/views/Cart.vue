@@ -7,6 +7,9 @@ import Footer from "../components/Footer.vue";
 
 <template>
     <Navigation :number="number"  />
+    <div v-if="!isLoggedIn" class="container mt-3 d-flex justify-content-center">
+        <div class="alert alert-warning text-center col-12 col-sm-6 col-lg-6 col-md-6">Nemate pristup košarici</div>
+    </div>
 
     <div
         class="container d-flex flex-column align-items-center justify-content-center mt-5 gap-3"
@@ -80,8 +83,13 @@ export default {
         return {
             items: [],
             number: "",
+            isLoggedIn: false,
         };
+        
     },
+    isLoggedIn() {
+            return this.loggedInUser !== null;
+        },
     created() {
         this.getCartItems();
         this.getCartNumber();
