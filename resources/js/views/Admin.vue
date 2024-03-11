@@ -46,7 +46,7 @@ import Footer from "../components/Footer.vue";
         </ul>
     </div>
 
-    <div class="container mt-5">
+    <div class="container mt-5 mb-5">
         <div
             class="accordion accordion-flush shadow-lg"
             id="accordionFlushExample"
@@ -227,8 +227,8 @@ import Footer from "../components/Footer.vue";
                                         <th>ID Kategorije</th>
                                         <th>Ime</th>
                                         <th>Dodao/la</th>
-                                        <th>Opcije</th>
-                                       
+                                        <th>Izbriši</th>
+                                        <th> Uredi </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -272,8 +272,99 @@ import Footer from "../components/Footer.vue";
                                                 Izbrisi
                                             </button>
                                         </td>
-                                       
-                                        
+                                        <td>
+                                    
+                                        <button
+                                                class="btn btn-sm btn-link text-primary"
+                                                data-bs-toggle="modal"
+                                                :data-bs-target="
+                                                    '#exampleModal5' +
+                                                    category.id
+                                                "
+                                                data-bs-whatever="@mdo"
+                                                @click="
+                                                    updateCategoryName(category)
+                                                "
+                                            >
+                                                Uredi
+                                            </button>
+                                            <div
+                                                class="modal fade"
+                                                :id="
+                                                    'exampleModal5' + category.id
+                                                "
+                                                tabindex="-1"
+                                                :aria-labelledby="
+                                                    'exampleModalLabel' +
+                                                    category.id
+                                                "
+                                                aria-hidden="true"
+                                            >
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div
+                                                            class="modal-header"
+                                                        >
+                                                            <h1
+                                                                class="modal-title fs-5"
+                                                                :id="
+                                                                    '#exampleModal5' +
+                                                                    category.id
+                                                                "
+                                                            >
+                                                                Uredi kategoriju
+                                                            </h1>
+                                                            <button
+                                                                type="button"
+                                                                class="btn-close"
+                                                                data-bs-dismiss="modal"
+                                                                aria-label="Close"
+                                                            ></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <form @submit.prevent="urediKategoriju(category.id)">
+                                                                <div
+                                                                    class="mb-3"
+                                                                >
+                                                                    <label
+                                                                        for="recipient-name"
+                                                                        class="col-form-label"
+                                                                        >Ime kategorije:</label
+                                                                    >
+                                                                    <input
+                                                                        type="text"
+                                                                        class="form-control"
+                                                                        id="recipient-name"
+                                                                        v-model="
+                                                                            updateCategory.name
+                                                                        "
+                                                                        required
+                                                                    />
+                                                                </div>
+                                                                <button
+                                                                    type="submit"
+                                                                    class="btn custom-btn w-100"
+                                                                >
+                                                                    Potvrdi
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                        <div
+                                                            class="modal-footer"
+                                                        >
+                                                            <button
+                                                                type="button"
+                                                                class="btn btn-secondary w-100"
+                                                                data-bs-dismiss="modal"
+                                                            >
+                                                                Zatvori
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                       </td>
+                                    
                                     </tr>
                                 </tbody>
                             </table>
@@ -611,7 +702,7 @@ import Footer from "../components/Footer.vue";
                                                                 </div>
                                                                 <button
                                                                     type="submit"
-                                                                    class="btn btn-primary w-100"
+                                                                    class="btn custom-btn w-100"
                                                                 >
                                                                     Potvrdi
                                                                 </button>
@@ -855,6 +946,8 @@ export default {
             category: {
                 name: "",
             },
+            
+            
             genders: [],
             categories: [],
             product: {
@@ -876,7 +969,11 @@ export default {
                 gender_id: "",
                 image: "",
             },
+            updateCategory:{
+                name:"",
+            },
             productId: null,
+            categoryId: null,
             isUserLogin:false,
             isDisabled:false,
             user:[],
@@ -1050,6 +1147,13 @@ export default {
             $("#exampleModal20" + product.id).modal("show");
         },
 
+        
+        updateCategoryName(category){
+            this.categoryId = category.id;
+            this.updateCategory.name=category.name;
+            $("#exampleModal30" + category.id).modal("show");
+        },
+
         urediArtikl(id) {
             let updateProductItem = new FormData();
             updateProductItem.append("name", this.updateProduct.name);
@@ -1082,6 +1186,30 @@ export default {
                 });
             $("#exampleModal20" + this.productId).modal("hide");
         },
+
+
+        urediKategoriju(id){
+            let updateCategoryName= new FormData();
+            updateCategoryName.append("name", this.updateCategory.name);
+
+            axios
+                .post(`/updateCategory/${id}`, updateCategoryName)
+                .then((response) => {
+                    this.message = response.data.message;
+
+                    const category = response.data.category;
+                    const index = this.categories.findIndex(
+                        (category) => category.id === this.categoryId
+                    );
+                    if (index !== -1) {
+                        this.categories[index].name = category.name;
+                        
+                    }
+                    this.getCategory();
+                });
+            $("#exampleModal30" + this.categoryId).modal("hide");
+        },
+        
 
         imageChangeUpdate(event) {
             this.updateProduct.image = event.target.files[0];

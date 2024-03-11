@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
@@ -29,4 +30,33 @@ class CategoryController extends Controller
         $category->delete();
         return response()->json(['message' => 'Uspjesno ste izbrisali kategoriju!']);
     }
+
+
+
+    public function urediKategoriju(Request $request, $id){
+
+        $category = Category::findOrFail($id);
+        $data = $request->validate([
+            'name' => '',
+            
+        ]);
+
+        
+
+
+        DB::table('categories')
+    ->where('id', $id)
+    ->update([
+        'name' => $data['name'],
+        
+    ]);
+
+        $category->save();
+        return response()->json([
+            'poruka' => 'Uspjesno uredjeno',
+            'category' => $category,
+        ]);
+    }
+
+
 }

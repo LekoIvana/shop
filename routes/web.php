@@ -20,6 +20,7 @@ Route::get('/isUserLogged',[UserController::class,'isUserLogged']);
 Route::post('/addCategory',[CategoryController::class,'dodajKategoriju']);
 Route::get('/getCategory',[CategoryController::class,'dohvatiKategorije']);
 Route::post('deleteCategory/{id}',[CategoryController::class,'izbrisiKategoriju']);
+Route::post('/updateCategory/{id}',[CategoryController::class,'urediKategoriju']);
 
 Route::get('/getGender',[GenderController::class,'dohvatiGender']);
 
