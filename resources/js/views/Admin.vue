@@ -27,7 +27,7 @@ import Footer from "../components/Footer.vue";
                 <button
                     class="btn btn-transparent"
                     data-bs-toggle="modal"
-                    data-bs-target="#exampleModal10"
+                    data-bs-target="#exampleModal30"
                     data-bs-whatever="@mdo"
                 >
                     Dodaj kategoriju
@@ -644,7 +644,7 @@ import Footer from "../components/Footer.vue";
 
     <div
         class="modal fade"
-        id="exampleModal10"
+        id="exampleModal30"
         tabindex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
@@ -935,7 +935,7 @@ export default {
                 .post("/addCategory", Category)
                 .then((response) => {
                     this.message = response.data.message;
-                    $("#exampleModal10").modal("hide");
+                    $("#exampleModal30").modal("hide");
                     this.getCategory();
                 })
                 .catch((error) => {
