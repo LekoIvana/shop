@@ -122,5 +122,7 @@ class ProductController extends Controller
         $text = $request->input('text');
         $results = Product::where('name', 'like', "%$text%")->get();
         return response()->json(['results' => $results]);
+       
+        
     }
 }

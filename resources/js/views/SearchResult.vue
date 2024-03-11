@@ -13,8 +13,12 @@
         >
             {{message}}
         </div>
-    </div>
-        <h2 class="text-center  mt-5">Rezultati pretrage:</h2>
+       <!--- <div v-if="searchResults === null">
+            <h2 class="text-center  mt-5">Nema proizvoda</h2>
+        </div> -->
+    </div >
+        <h2 class="text-center  mt-5">Rezultati pretrage:  </h2> 
+<div class="container"> 
      <div class="d-flex gap-5 flex-wrap mt-5 ms-5">
         <div class="card shadow-lg" v-for="product in searchResults" style="width: 18rem">
             <img
@@ -43,6 +47,7 @@
             </div>
         </div>
     </div>
+</div>
     <Footer />
 </template>
 
@@ -54,10 +59,14 @@
             isAdded:false,
             message:'',
             isUserLogin: false,
+           
         };
     },
     mounted() {
+       
         this.searchResults = JSON.parse(this.$route.query.results);
+
+        
 
     },
 
@@ -106,4 +115,7 @@
 .cartSvg{
     color: #FF26C2;
 }
+.container {
+        margin-bottom: 100px; 
+    }
 </style>

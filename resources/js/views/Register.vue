@@ -4,9 +4,12 @@ import Footer from "../components/Footer.vue";
 </script>
 
 <template>
+    <head>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    </head>
     <Navigation />
 
-    <div class="container">
+    <div class="container mt-6">
         <div
             class="login-form d-flex justify-content-center align-items-center"
             style="height: 80vh; background-color: "
@@ -58,9 +61,10 @@ import Footer from "../components/Footer.vue";
                         {{ errors.email[0] }}
                     </p>
                 </div>
-
-                <div class="form-floating mb-3">
+                <div class="input-group mb-3">
+                <div class="form-floating ">
                     <input
+                        :type="showPassword ? 'text' : 'password'"
                         type="password"
                         class="form-control"
                         id="floatingPassword"
@@ -72,8 +76,14 @@ import Footer from "../components/Footer.vue";
                         {{ errors.password[0] }}
                     </p>
                 </div>
-                <div class="form-floating mb-3">
+                <span class="input-group-text" @click="showPassword = !showPassword" >
+               <i class="bi" :class="[showPassword ? 'bi-eye' : 'bi-eye-slash']" aria-hidden="true" ></i>
+            </span>
+                </div>
+                <div class="input-group mb-3">
+                <div class="form-floating ">
                     <input
+                        :type="showPassword ? 'text' : 'password'"
                         type="password"
                         class="form-control"
                         id="floatingPassword"
@@ -84,6 +94,17 @@ import Footer from "../components/Footer.vue";
                     <p v-if="errors.repeat_password" class="text-danger">
                         {{ errors.repeat_password[0] }}
                     </p>
+                    
+                </div>
+                <span class="input-group-text" @click="showPassword = !showPassword" >
+                    <i class="bi" :class="[showPassword ? 'bi-eye' : 'bi-eye-slash']" aria-hidden="true" ></i>
+                </span>
+                </div>
+                <div class="form-check d-flex justify-content-center mb-2">
+                    <input  class="form-check-input me-2" type="checkbox" value="" id="form2Example3cg" />
+                    <label class="form-check-label" for="form2Example3g">
+                    Prihvaćam opća <a href="#!" class="link" style="color: #ff26c2;"><u>pravila korištenja!</u></a>
+                    </label>
                 </div>
                 <button
                     type="submit"
@@ -91,6 +112,8 @@ import Footer from "../components/Footer.vue";
                 >
                     Registriraj se
                 </button>
+                
+                <p class="text-center mt-3">Već si naš korisnik? <span><router-link class="text-decoration-underline" style="color:#ff26c2" to="/login">Prijavi se!</router-link></span></p>
                 <div
                     v-if="successRegister"
                     class="alert alert-light text-light mt-3 text-center"
@@ -119,6 +142,7 @@ export default {
             },
             errors: {},
             existMailUser:false,
+            showPassword:false,
         };
     },
     methods: {
@@ -156,5 +180,31 @@ export default {
 .regBtn {
     background-color: #ff26c2;
     border: none;
+}
+.form-control:focus {
+        border-color: #ff26c2;
+        box-shadow: inset 0 1px 1px rgb(224, 62, 216), 0 0 8px rgb(224, 62, 216);
+    }
+    .form-select:focus {
+        box-shadow: inset 0 1px 1px rgb(224, 62, 216), 0 0 8px rgb(224, 62, 216);
+        border-color: #ff26c2;
+}
+.container {
+        margin-bottom: 150px; 
+        margin-top: 100px;
+    }
+
+    .form-check-input:checked {
+    background-color: #ff26c2;
+}
+.form-check-input:checked {
+  box-shadow:  0 0 5px #ff26c2 !important;
+  border-color: #ff26c2;
+  
+}
+.form-check-input{
+    box-shadow:  0 0 5px #ff26c2 !important;
+    border-color: #ff26c2 !important;
+
 }
 </style>

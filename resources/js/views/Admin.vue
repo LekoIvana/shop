@@ -5,17 +5,19 @@ import Footer from "../components/Footer.vue";
 
 <template>
     <Navigation />
+
     <div v-if="user.role === 'korisnik'" class="container mt-3 d-flex justify-content-center">
-        <div class="alert alert-warning text-center col-12 col-sm-6 col-lg-6 col-md-6">Nemate pristup administraciji</div>
+        <div class="alert alert-warning text-center col-12 col-sm-6 col-lg-6 col-md-6">Nemate pristup administraciji!</div>
     </div>
 
     <div  v-if="user.role === 'admin'">
         <div v-if="isUserLogin" class="dropdown position-absolute end-0 me-3 mt-2">
         <button
-            class="btn btn-primary dropdown-toggle"
+            class="btn custom-btn dropdown-toggle"
             type="button"
             data-bs-toggle="dropdown"
             aria-expanded="false"
+            
 
         >
             Opcije
@@ -226,6 +228,7 @@ import Footer from "../components/Footer.vue";
                                         <th>Ime</th>
                                         <th>Dodao/la</th>
                                         <th>Opcije</th>
+                                       
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -269,6 +272,8 @@ import Footer from "../components/Footer.vue";
                                                 Izbrisi
                                             </button>
                                         </td>
+                                       
+                                        
                                     </tr>
                                 </tbody>
                             </table>
@@ -671,7 +676,7 @@ import Footer from "../components/Footer.vue";
                                 required
                             />
                         </div>
-                        <button type="submit" class="btn btn-primary w-100">
+                        <button type="submit" class="btn custom-btn w-100">
                             Potvrdi
                         </button>
                     </form>
@@ -814,7 +819,7 @@ import Footer from "../components/Footer.vue";
                         </div>
                         <button
                             type="submit"
-                            class="btn btn-primary mt-3 w-100"
+                            class="btn custom-btn mt-3 w-100"
                         >
                             Potvrdi
                         </button>
@@ -840,6 +845,7 @@ import Footer from "../components/Footer.vue";
 
 <script>
 import axios from "axios";
+
 
 export default {
     data() {
@@ -876,6 +882,8 @@ export default {
             user:[],
         };
     },
+    
+    
     created() {
         this.getUsers();
         this.getCategory();
@@ -971,6 +979,7 @@ export default {
         imageChange(event) {
             this.product.image = event.target.files[0];
         },
+        
 
         addProduct() {
             const Product = new FormData();
@@ -1111,9 +1120,28 @@ export default {
 </script>
 
 <style>
+.container{
+    
+}
 
 .disabled{
     pointer-events: none;
+}
+.custom-btn {
+        background-color: #ff26c2; 
+        color: #ffffff;
+}
+.custom-btn:active,
+.custom-btn:hover {
+        background-color: #ff26c2; 
+        color: #ffffff; 
+}
+.accordion-item {
+    --bs-accordion-active-bg: #ff26c2;
+    --bs-accordion-active-color: #ffffff; 
+    
+    --bs-accordion-btn-focus-box-shadow: #ff26c2;
+    
 }
 
 </style>

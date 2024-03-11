@@ -15,6 +15,7 @@ import axios from "axios";
             {{message}}
         </div>
     </div>
+<div class="container">
     <div class="d-flex gap-5 flex-wrap mt-5 ms-5">
         <div class="card shadow-lg" v-for="product in products" style="width: 18rem;">
             <img
@@ -44,6 +45,7 @@ import axios from "axios";
             </div>
         </div>
     </div>
+</div>
     <Footer />
 </template>
 
@@ -113,5 +115,7 @@ export default {
 .cartSvg{
     color: #FF26C2;
 }
-
+.container {
+        margin-bottom: 100px; 
+    }
 </style>

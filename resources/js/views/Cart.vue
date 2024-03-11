@@ -7,18 +7,24 @@ import Footer from "../components/Footer.vue";
 
 <template>
     <Navigation :number="number"  />
-    <div v-if="!isLoggedIn" class="container mt-3 d-flex justify-content-center">
-        <div class="alert alert-warning text-center col-12 col-sm-6 col-lg-6 col-md-6">Nemate pristup košarici</div>
+    
+    <div  v-if="!isLoggedIn" class="container mt-3 d-flex justify-content-center">
+        <div class="alert alert-warning text-center col-12 col-sm-6 col-lg-6 col-md-6">Nemate pristup košarici.</div>
     </div>
-
-    <div
-        class="container d-flex flex-column align-items-center justify-content-center mt-5 gap-3"
+    <div v-if="isLoggedIn">
+        <div v-if="number===0" class="mt-5">
+            <h3 class="text-center">Tvoja košarica je prazna!</h3>
+        </div>
+    <div 
+        class="container d-flex flex-column align-items-center justify-content-center mt-5 gap-3 " v-if="number!==0"
     >
+
         <h3 class="text-center">Tvoja košarica</h3>
+        
         <div class="row row-cols-1 row-cols-md-2 g-3">
             <div class="col" v-for="item in items" :key="item.id">
                 <div
-                    class="card"
+                    class="card h-100"
                     style="max-width: 540px; background-color: #e4d9d9"
                 >
                     <div class="row g-0">
@@ -74,25 +80,39 @@ import Footer from "../components/Footer.vue";
             </div>
         </div>
     </div>
+    </div>
     <Footer />
 </template>
 
 <script>
+    import { mapState } from "vuex";
+    import axios from "axios";
+    import { mapGetters } from "vuex";
+    import { mapActions } from "vuex";
+
 export default {
     data() {
         return {
             items: [],
             number: "",
-            isLoggedIn: false,
+            
+            
         };
         
     },
-    isLoggedIn() {
+    computed: {
+        
+        ...mapGetters(["loggedInUser"]),
+
+        isLoggedIn() {
             return this.loggedInUser !== null;
         },
+    },
     created() {
         this.getCartItems();
         this.getCartNumber();
+        //this.isUserLogged();
+        
     },
     methods: {
         getCartItems() {
@@ -137,6 +157,11 @@ export default {
 <style scoped>
 .trashIcon {
     color: #ff26c2;
-    cursor: pointer;
+    cursor: grab;
 }
+.container {
+        margin-bottom: 100px; 
+    }
+
+    
 </style>

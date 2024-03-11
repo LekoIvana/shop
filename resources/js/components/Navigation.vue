@@ -4,7 +4,9 @@
 </script>
 
 <template>
-
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
     <div>
 
     <nav class="navbar navbar-expand-lg bg-white sticky-top navbar-light p-3 shadow-sm" style="background-color: #E4D9D9 !important;">
@@ -57,7 +59,7 @@
 <router-link class="nav-link mx-2 text-uppercase d-flex align-items-center" to="/admin"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-circle me-1" viewBox="0 0 16 16">
   <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
   <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
-</svg>ADMINISTRACIJA</router-link>
+</svg>ADMIN</router-link>
             </li>
           </ul>
           <ul class="navbar-nav ms-auto" v-if="!isLoggedIn">
@@ -91,7 +93,7 @@
                                         class="dropdown-item"
                                         href="#"
                                     >
-                                        Odjava
+                                        Odjavi se! <i class="bi bi-box-arrow-in-right" style="color: #ff26c2;"></i>
                                     </a>
                                 </li>
                             </ul>
@@ -205,5 +207,12 @@
 </script>
 
 <style scoped>
-
+.form-control:focus {
+        border-color: #ff26c2;
+        box-shadow: inset 0 1px 1px rgb(224, 62, 216), 0 0 8px rgb(224, 62, 216);
+    }
+    .form-select:focus {
+        box-shadow: inset 0 1px 1px rgb(224, 62, 216), 0 0 8px rgb(224, 62, 216);
+        border-color: #ff26c2;
+}
 </style>
