@@ -62,7 +62,7 @@
             searchResults: [],
             isAdded:false,
             message:'',
-            isUserLogin: false,
+            //isLoggedIn: false,
            
         };
     },

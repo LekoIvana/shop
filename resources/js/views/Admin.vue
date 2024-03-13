@@ -73,6 +73,7 @@ import Footer from "../components/Footer.vue";
                         <table class="table align-middle mb-0 bg-white">
                             <thead class="bg-light">
                                 <tr>
+                                    
                                     <th>Ime Prezime</th>
                                     <th>Email</th>
                                     <th>Uloga</th>
@@ -82,6 +83,7 @@ import Footer from "../components/Footer.vue";
                             </thead>
                             <tbody>
                                 <tr v-for="user in users" :key="user.id">
+                                    
                                     <td>
                                         <div class="d-flex align-items-center">
                                             <div class="ms-3">
@@ -228,7 +230,7 @@ import Footer from "../components/Footer.vue";
                                         <th>Ime</th>
                                         <th>Dodao/la</th>
                                         <th>Izbriši</th>
-                                        <th> Uredi </th>
+                                       <!-- <th> Uredi </th> -->
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -272,6 +274,7 @@ import Footer from "../components/Footer.vue";
                                                 Izbrisi
                                             </button>
                                         </td>
+                                        <!---
                                         <td>
                                     
                                         <button
@@ -364,7 +367,7 @@ import Footer from "../components/Footer.vue";
                                                 </div>
                                             </div>
                                        </td>
-                                    
+                                    -->
                                     </tr>
                                 </tbody>
                             </table>
