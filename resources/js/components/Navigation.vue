@@ -140,6 +140,7 @@
             return this.loggedInUser !== null;
         },
     },
+   
     created(){
         this.getUser();
         this.getCartNumber();

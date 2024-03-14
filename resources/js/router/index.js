@@ -9,6 +9,11 @@ import Cart from '../views/Cart.vue'
 import SearchResult from '../views/SearchResult.vue'
 import Home from '../views/Home.vue'
 
+
+import store from '../store/index';
+
+
+
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
@@ -33,7 +38,20 @@ const router = createRouter({
         {
             path: '/admin',
             name: 'admin',
-            component: Admin
+            component: Admin,
+            /* beforeEnter(to, from, next) {
+                // Dobijte loggedInUser iz Vašeg Vuex store-a pomoću gettera
+                const loggedInUser = store.getters.loggedInUser;
+                
+                // Provjerite je li loggedInUser null
+                if (loggedInUser.role === "korisnik") {
+                  // Ako jest, korisnik nije prijavljen, pa ga preusmjerite na željenu rutu 
+                  window.location.href = 'https://www.google.com';
+                } else {
+                  // Inače, korisnik je prijavljen, pa dopustite pristup košarici
+                  next();
+                }
+              }*/
         },
         {
             path: '/kids',
@@ -49,7 +67,21 @@ const router = createRouter({
         {
             path: '/cart',
             name: 'cart',
-            component:Cart
+            component:Cart,
+            /*beforeEnter(to, from, next) {
+                // Dobijte loggedInUser iz Vašeg Vuex store-a pomoću gettera
+                const loggedInUser = store.getters.loggedInUser;
+                
+                // Provjerite je li loggedInUser null
+                if (loggedInUser === null) {
+                  // Ako jest, korisnik nije prijavljen, pa ga preusmjerite na željenu rutu 
+                  window.open('https://www.google.com', '_blank');
+                } else {
+                  // Inače, korisnik je prijavljen, pa dopustite pristup košarici
+                  next();
+                }
+              }*/
+            
         },
         {
             path: '/searchResult',
@@ -60,10 +92,14 @@ const router = createRouter({
             path: '/',
             name: 'home',
             component:Home
-        }
+        },
+        
+        
 
     ]
-})
+});
+
+  
 
 
 export default router

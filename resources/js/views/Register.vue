@@ -161,6 +161,7 @@ export default {
                     this.message = response.data.message;
                     this.successRegister = true;
                     this.errors = {};
+                    //this.$router.push('/')
                 })
                 .catch((error) => {
                     if (error.response && error.response.status === 422) {
