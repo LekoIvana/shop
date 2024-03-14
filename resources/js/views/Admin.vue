@@ -37,7 +37,7 @@ import Footer from "../components/Footer.vue";
                 <button
                     class="btn btn-transparent"
                     data-bs-toggle="modal"
-                    data-bs-target="#exampleModal20"
+                    data-bs-target="#exampleModal40"
                     data-bs-whatever="@mdo"
                 >
                     Dodaj artikl
@@ -790,7 +790,7 @@ import Footer from "../components/Footer.vue";
 
     <div
         class="modal fade"
-        id="exampleModal20"
+        id="exampleModal40"
         tabindex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
@@ -1096,7 +1096,7 @@ export default {
                 .then((response) => {
                     this.message = response.data.message;
                     this.getProduct();
-                    $("#exampleModal20").modal("hide");
+                    $("#exampleModal40").modal("hide");
                     this.product = {
                         name: "",
                         description: "",
@@ -1147,7 +1147,7 @@ export default {
             this.updateProduct.category_id = product.category_id;
             this.updateProduct.gender_id = product.gender_id;
             this.updateProduct.image = product.image;
-            $("#exampleModal20" + product.id).modal("show");
+            $("#exampleModal40" + product.id).modal("show");
         },
 
         
@@ -1187,7 +1187,7 @@ export default {
                     }
                     this.getProduct();
                 });
-            $("#exampleModal20" + this.productId).modal("hide");
+            $("#exampleModal40" + this.productId).modal("hide");
         },
 
 
